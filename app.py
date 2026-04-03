@@ -86,8 +86,3 @@ def enviar_mensaje(destino, plantilla):
         print("Mensaje enviado con éxito.")
     else:
         print(f"Error al enviar mensaje: {response.status_code}", response.text)
-
-# Esto es necesario para que el servidor de Render inicie la aplicación
-#if __name__ == '__main__':
-#     Render se encarga de definir el puerto, así que no nos preocupamos por eso
-#    app.run(debug=True, port=os.getenv('PORT', default=5000))
