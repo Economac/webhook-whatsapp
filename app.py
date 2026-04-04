@@ -36,19 +36,19 @@ def webhook_handler():
 
                 # ------------ TU LÓGICA DE RESPUESTA VA AQUÍ ------------
                 # Ejemplo: si el usuario escribe algo con "hola", respondemos.
-                  if 'hola' in cuerpo_mensaje.lower():
+if 'hola' in cuerpo_mensaje.lower():
                       send_whatsapp_message(numero_cliente, 'hello_world')
                   # ---------------------------------------------------------
 
-          except (KeyError, IndexError, TypeError) as e:
+except (KeyError, IndexError, TypeError) as e:
               # Si la notificación no es un mensaje de texto, lo ignoramos para evitar errores
               print(f"Evento no procesado (ignorado): {e}")
-              pass
+pass
 
-          return 'OK', 200
+return 'OK', 200
 
   # Función para enviar un mensaje de plantilla
-  def send_whatsapp_message(to_number, template_name):
+def send_whatsapp_message(to_number, template_name):
       url = f"https://graph.facebook.com/v19.0/{PHONE_NUMBER_ID}/messages"
       headers = {
           "Authorization": f"Bearer {ACCESS_TOKEN}",
