@@ -36,30 +36,30 @@ def webhook_handler():
 
                 # ------------ TU LÓGICA DE RESPUESTA VA AQUÍ ------------
                 # Ejemplo: si el usuario escribe algo con "hola", respondemos.
-if 'hola' in cuerpo_mensaje.lower():
-                      send_whatsapp_message(numero_cliente, 'hello_world')
-                  # ---------------------------------------------------------
+        if 'hola' in cuerpo_mensaje.lower():
+                    send_whatsapp_message(numero_cliente, 'hello_world')
+                # ---------------------------------------------------------
 
-except (KeyError, IndexError, TypeError) as e:
-              # Si la notificación no es un mensaje de texto, lo ignoramos para evitar errores
-              print(f"Evento no procesado (ignorado): {e}")
-pass
+        except (KeyError, IndexError, TypeError) as e:
+            # Si la notificación no es un mensaje de texto, lo ignoramos para evitar errores
+            print(f"Evento no procesado (ignorado): {e}")
+            pass
 
-return 'OK', 200
+        return 'OK', 200
 
-  # Función para enviar un mensaje de plantilla
+# Función para enviar un mensaje de plantilla
 def send_whatsapp_message(to_number, template_name):
-      url = f"https://graph.facebook.com/v19.0/{PHONE_NUMBER_ID}/messages"
-      headers = {
-          "Authorization": f"Bearer {ACCESS_TOKEN}",
-          "Content-Type": "application/json"
-      }
-      payload = {
-          "messaging_product": "whatsapp",
-          "to": to_number,
-          "type": "template",
-          "template": { "name": template_name, "language": { "code": "en_US" } }
-      }
-      
-      response = requests.post(url, headers=headers, data=json.dumps(payload))
-      print(f"Respuesta de la API de envío: {response.status_code} - {response.text}")
+    url = f"https://graph.facebook.com/v19.0/{PHONE_NUMBER_ID}/messages"
+    headers = {
+        "Authorization": f"Bearer {ACCESS_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "messaging_product": "whatsapp",
+        "to": to_number,
+        "type": "template",
+        "template": { "name": template_name, "language": { "code": "en_US" } }
+    }
+    
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    print(f"Respuesta de la API de envío: {response.status_code} - {response.text}")
